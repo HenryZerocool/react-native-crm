@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "firstName": "first",
+        "lastName": "user",
+        "phone": "123-456-7890"
+    },
+    {
+        "id": 2,
+        "firstName": "second",
+        "lastName": "name",
+        "phone": "123-456-7890"
+    }
+]
