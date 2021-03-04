@@ -1,14 +1,26 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import reducer from './src/reducers/PeopleReducer';
+import PeopleList from "./src/components/PeopleList";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-    </View>
-  );
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+export default class App extends React.Component {
+  render() {
+
+    return (
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Text style={styles.paragraph}>
+            Welcome to CRM!
+        </Text>
+          <PeopleList />
+        </View>
+      </Provider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
