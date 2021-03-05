@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { connect } from "react-redux";
-import PeopleItem from "./PeopleItem";
+import Icon from "react-native-vector-icons/EvilIcons";
+import * as actions from '../actions';
 
-class PeopleList extends Component {
+class AddPerson extends Component {
     render() {
         return (
-            <View>
-                <FlatList data={this.props.people} renderItem={({ item }) => <PeopleItem people={item} />} />
+            <View style={styles.container}>
+                <Text>Add person scnreen</Text>
             </View>
         )
     }
@@ -23,8 +24,4 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => {
-    return { people: state.people }
-}
-
-export default connect(mapStateToProps)(PeopleList)
+export default connect(null, actions)(AddPerson)

@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from './src/reducers/PeopleReducer';
 import PeopleList from "./src/components/PeopleList";
+import Navigation from "./src/components/Navigation";
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
@@ -12,12 +13,7 @@ export default class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Text style={styles.paragraph}>
-            Welcome to CRM!
-        </Text>
-          <PeopleList />
-        </View>
+        <Navigation />
       </Provider>
     );
   }
