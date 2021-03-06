@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/EvilIcons";
-import * as actions from '../actions';
+import * as actions from "../actions";
 
 class CompanyList extends Component {
     render() {
@@ -10,7 +10,7 @@ class CompanyList extends Component {
             <View style={styles.container}>
                 <Text>Company scnreen</Text>
             </View>
-        )
+        );
     }
 }
 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         paddingTop: 20,
         paddingLeft: 20,
-    }
-})
+    },
+});
 
-export default connect(null, actions)(CompanyList)
+export default connect(null, actions)(CompanyList);

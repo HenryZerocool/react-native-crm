@@ -4,6 +4,15 @@ const initialState = {
   people,
   detailView: false,
   personSelected: null,
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+  company: '',
+  project: '',
+  notes: '',
+  _id: '',
+  toUpdate: false,
 };
 
 export default (state = initialState, action) => {
@@ -19,6 +28,11 @@ export default (state = initialState, action) => {
         ...state,
         detailView: false,
         personSelected: null,
+      };
+    case "FORM_UPDATE":
+      return {
+        ...state,
+        [action.payload.prop]: action.payload.value
       };
     default:
       return state;
