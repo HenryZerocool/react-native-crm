@@ -3,8 +3,12 @@ import { View, StyleSheet, FlatList } from "react-native";
 import { connect } from "react-redux";
 import PeopleDetail from "./PeopleDetail";
 import PeopleItem from "./PeopleItem";
+import { loadInitialContact } from "../actions";
 
 class PeopleList extends Component {
+  componentDidMount() {
+    this.props.loadInitialContact();
+  }
   render() {
     if (this.props.detailView === true) {
       return <PeopleDetail />;
@@ -38,4 +42,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(PeopleList);
+export default connect(mapStateToProps, {loadInitialContact})(PeopleList);

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import reducer from './src/reducers/PeopleReducer';
 import PeopleList from "./src/components/PeopleList";
 import Navigation from "./src/components/Navigation";
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default class App extends React.Component {
   render() {

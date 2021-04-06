@@ -17,3 +17,40 @@ export const formUpdate = ({ prop, value }) => {
         payload: { prop, value },
     };
 };
+
+const localIP = '10.0.2.15';
+export const createNewPerson = ({ firstName, lastName, phone, email, company, project, notes }) => {
+    console.log('before fetch', { firstName, lastName, phone, email, company, project, notes })
+    return (dispatch) => {
+        fetch(`http://${localIP}:3000/contact`, {
+            method: "POST",
+            body: JSON.stringify({
+                "firstName": firstName,
+                "lastName": lastName,
+                // "phone": phone,
+                // "email": email,
+                // "company": company,
+                // "project": project,
+                // "notes": notes,
+            }),
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => console.log(response))
+        .then(() => {
+            dispatch({ type: 'NEW_CONTACT' });
+        })
+        .catch(error => console.log(error))
+    };
+};
+
+export const loadInitialContact = () => { 
+    return (dispatch) =>  { 
+        fetch(`http://${localIP}:3000/contact`)
+            .then(res => res.json())
+            .then(data => dispatch({ type: 'INITIAL_FETCH', payload: data}))
+            .catch(error => console.log(error))
+    }
+}
