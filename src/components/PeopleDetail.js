@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity} from "react-native";
 import { connect } from "react-redux";
 import EvilIcon from "react-native-vector-icons/EvilIcons";
 import SimpleIcon from "react-native-vector-icons/SimpleLineIcons";
@@ -8,6 +8,9 @@ import * as actions from "../actions";
 import PeopleItem from "./PeopleItem";
 
 class PeopleDetail extends Component {
+  componentDidMount(){
+    // console.log('details', this.props.person);
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -51,6 +54,16 @@ class PeopleDetail extends Component {
             />
             <Text>{this.props.person.notes}</Text>
           </View>
+            <View>
+              <TouchableOpacity>
+                <MaterialIcon name={'autorenew'} />
+                <Text>EDIT</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.props.deleteContact(this.props.person._id)}>
+                <MaterialIcon name={'delete-forever'} />
+                <Text>DELETE</Text>
+              </TouchableOpacity>
+            </View>
           <View>
               <TouchableOpacity onPress={()=>{}} >
               <Image

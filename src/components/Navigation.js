@@ -38,8 +38,8 @@ function TabNavigator() {
           return (<Icon name={iconName} size={50} color={color} />);
         }
       })}>
-          <Tab.Screen name="Add" component={AddPerson} />
           <Tab.Screen name="People" component={PeopleList} />
+          <Tab.Screen name="Add" component={AddPerson} />
           <Tab.Screen name="Company" component={CompanyList} />
     </Tab.Navigator>
     );

@@ -50,6 +50,12 @@ export default (state = initialState, action) => {
         project: '',
         notes: '',
       };
+    case "DELETE_CONTACT":
+      return {
+        ...state,
+        detailView: false,
+        personSelected: null,
+      }
     default:
       return state;
   }

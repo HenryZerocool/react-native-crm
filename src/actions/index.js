@@ -1,32 +1,48 @@
 export const selectPerson = (peopleId) => {
     return {
-        type: "SELECTED_PERSON",
+        type: 'SELECTED_PERSON',
         selectedId: peopleId,
     };
 };
 
 export const noneSelected = () => {
     return {
-        type: "NONE_SELECTED",
+        type: 'NONE_SELECTED',
     };
 };
 
 export const formUpdate = ({ prop, value }) => {
     return {
-        type: "FORM_UPDATE",
+        type: 'FORM_UPDATE',
         payload: { prop, value },
     };
 };
 
 const localIP = '10.0.2.15';
-export const createNewPerson = ({ firstName, lastName, phone, email, company, project, notes }) => {
-    console.log('before fetch', { firstName, lastName, phone, email, company, project, notes })
+export const createNewPerson = ({
+    firstName,
+    lastName,
+    phone,
+    email,
+    company,
+    project,
+    notes,
+}) => {
+    console.log('before fetch', {
+        firstName,
+        lastName,
+        phone,
+        email,
+        company,
+        project,
+        notes,
+    });
     return (dispatch) => {
         fetch(`http://${localIP}:3000/contact`, {
-            method: "POST",
+            method: 'POST',
             body: JSON.stringify({
-                "firstName": firstName,
-                "lastName": lastName,
+                firstName: firstName,
+                lastName: lastName,
                 // "phone": phone,
                 // "email": email,
                 // "company": company,
@@ -34,23 +50,34 @@ export const createNewPerson = ({ firstName, lastName, phone, email, company, pr
                 // "notes": notes,
             }),
             headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            }
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
         })
-        .then((response) => console.log(response))
-        .then(() => {
-            dispatch({ type: 'NEW_CONTACT' });
-        })
-        .catch(error => console.log(error))
+            .then((response) => console.log(response))
+            .then(() => {
+                dispatch({ type: 'NEW_CONTACT' });
+            })
+            .catch((error) => console.log(error));
     };
 };
 
-export const loadInitialContact = () => { 
-    return (dispatch) =>  { 
+export const loadInitialContact = () => {
+    return (dispatch) => {
         fetch(`http://${localIP}:3000/contact`)
-            .then(res => res.json())
-            .then(data => dispatch({ type: 'INITIAL_FETCH', payload: data}))
-            .catch(error => console.log(error))
-    }
-}
+            .then((res) => res.json())
+            .then((data) => dispatch({ type: 'INITIAL_FETCH', payload: data }))
+            .catch((error) => console.log(error));
+    };
+};
+
+export const deleteContact = (contactID) => {
+    return (dispatch) => {
+        fetch(`http://${localIP}:3000/contact/${contactID}`, {
+            method: 'DELETE',
+        })
+            .then((res) => res.json())
+            .then((data) => dispatch({ type: 'DELETE_CONTACT' }))
+            .catch((error) => console.log(error));
+    };
+};
