@@ -5,13 +5,21 @@ import EvilIcon from "react-native-vector-icons/EvilIcons";
 import SimpleIcon from "react-native-vector-icons/SimpleLineIcons";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import * as actions from "../actions";
-import PeopleItem from "./PeopleItem";
+// import PeopleItem from "./PeopleItem";
+import EditPerson from "./EditPerson";
 
 class PeopleDetail extends Component {
   componentDidMount(){
-    // console.log('details', this.props.person);
+    console.log('details', this.props);
+  }
+  startEditting() {
+    console.log('start edit');
+    this.props.updateContact(this.props.person);
+    // this.props.toUpdate = true;
   }
   render() {
+    if (this.props.toUpdate)
+      return (<EditPerson />)
     return (
       <View style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -55,7 +63,7 @@ class PeopleDetail extends Component {
             <Text>{this.props.person.notes}</Text>
           </View>
             <View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=> this.startEditting()}>
                 <MaterialIcon name={'autorenew'} />
                 <Text>EDIT</Text>
               </TouchableOpacity>
@@ -159,6 +167,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     person: state.personSelected,
+    toUpdate: state.toUpdate
   };
 };
 

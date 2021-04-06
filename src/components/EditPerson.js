@@ -11,20 +11,19 @@ import { connect } from "react-redux";
 // import Icon from "react-native-vector-icons/EvilIcons";
 import * as actions from "../actions";
 
-const localIP = '10.0.2.15';
-class AddPerson extends Component {
+class EditPerson extends Component {
     onSubmit = () => {
-        const { firstName, lastName, phone, email, company, project, notes } = this.props;
-        this.props.createNewPerson({ firstName, lastName, phone, email, company, project, notes });
+        const { firstName, lastName, phone, email, company, project, notes, _id } = this.props;
+        this.props.saveContact({ firstName, lastName, phone, email, company, project, notes, _id });
 
-        this.props.navigation.navigate('People');
+        // this.props.navigation.navigate('People');
         console.log('submited');
     }
     render() {
         return (
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.form}>
-                    <Text style={styles.title}>Add a new contact</Text>
+                    <Text style={styles.title}>Update contact</Text>
                     <TextInput
                         style={styles.textField}
                         placeholder={"First name..."}
@@ -81,8 +80,8 @@ class AddPerson extends Component {
                             this.props.formUpdate({ prop: "notes", value })
                         }
                     />
-                    <View style={styles.addButton}>
-                        <Button onPress={this.onSubmit} title="Add" />
+                    <View style={styles.updateButton}>
+                        <Button onPress={this.onSubmit} title="Update" />
                     </View>
                 </View>
             </ScrollView>
@@ -108,14 +107,14 @@ const styles = StyleSheet.create({
         height: 40,
         color: "orange",
     },
-    addButton: {
+    updateButton: {
         marginTop: 20,
     },
 });
 
 const mapStateToProps = state => {
-    const { firstName, lastName, phone, email, company, project, notes} = state;
-    return { firstName, lastName, phone, email, company, project, notes };
+    const { firstName, lastName, phone, email, company, project, notes, _id} = state;
+    return { firstName, lastName, phone, email, company, project, notes, _id };
 }
 
-export default connect(mapStateToProps, actions)(AddPerson);
+export default connect(mapStateToProps, actions)(EditPerson);
