@@ -28,26 +28,17 @@ export const createNewPerson = ({
     project,
     notes,
 }) => {
-    console.log('before fetch', {
-        firstName,
-        lastName,
-        phone,
-        email,
-        company,
-        project,
-        notes,
-    });
     return (dispatch) => {
         fetch(`http://${localIP}:3000/contact`, {
             method: 'POST',
             body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                // "phone": phone,
-                // "email": email,
-                // "company": company,
-                // "project": project,
-                // "notes": notes,
+                firstName,
+                lastName,
+                phone,
+                email,
+                company,
+                project,
+                notes,
             }),
             headers: {
                 Accept: 'application/json',
@@ -85,9 +76,9 @@ export const deleteContact = (contactID) => {
 export const updateContact = (person) => {
     return {
         type: 'UPDATE_CONTACT',
-        payload: person
-    }
-}
+        payload: person,
+    };
+};
 
 export const saveContact = ({
     firstName,
@@ -96,20 +87,20 @@ export const saveContact = ({
     email,
     company,
     project,
-    notes, _id
+    notes,
+    _id,
 }) => {
     return (dispatch) => {
         fetch(`http://${localIP}:3000/contact/${_id}`, {
             method: 'PUT',
             body: JSON.stringify({
-
-                firstName: firstName,
-                lastName: lastName,
-                // "phone": phone,
-                // "email": email,
-                // "company": company,
-                // "project": project,
-                // "notes": notes,
+                firstName,
+                lastName,
+                phone,
+                email,
+                company,
+                project,
+                notes,
             }),
             headers: {
                 Accept: 'application/json',
