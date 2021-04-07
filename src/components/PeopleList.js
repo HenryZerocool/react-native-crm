@@ -28,7 +28,7 @@ class PeopleList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 353,
+    width: '100%',
     flexWrap: "wrap",
     paddingTop: 20,
     paddingLeft: 20,

@@ -14,24 +14,26 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 export const CompanyItem = (props) => {
     // console.log('companies', props);
     return (
-        <TouchableWithoutFeedback onPress={() => ({})}>
-            <View style={styles.card}>
-                <Image
-                    sources={require('../images/background.jpg')}
-                    style={styles.image}
-                />
-                <Icon name={'user'} size={100} style={styles.icon} />
-                <Text style={styles.title}>{props.companies.company}</Text>
-                {props.companies.names.map((name) => {
-                    return (
-                        <Text>
-                            {name.firstName} {name.lastName}
-                        </Text>
-                    );
-                })}
-                <Text />
-            </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.container}>
+            <TouchableWithoutFeedback onPress={() => ({})}>
+                <View style={styles.card}>
+                    <Image
+                        source={require('../images/background.jpg')}
+                        style={styles.image}
+                    />
+                    <Icon name={'trophy'} size={100} style={styles.icon} />
+                    <Text style={styles.title}>{props.companies.company}</Text>
+                    {props.companies.names.map((name) => {
+                        return (
+                            <Text style={styles.action}>
+                                {name.firstName} {name.lastName}
+                            </Text>
+                        );
+                    })}
+                    <Text />
+                </View>
+            </TouchableWithoutFeedback>
+        </View>
     );
 };
 
@@ -39,11 +41,18 @@ export const CompanyItem = (props) => {
 
 const styles = StyleSheet.create({
     card: {
-        marginTop: 20,
+        marginRight: 15,
+        marginBottom: 20,
     },
     title: {
-        top: 20,
+        top: 30,
         left: 80,
+        fontSize: 24,
+    },
+    title: {
+        position: 'absolute',
+        top: 30,
+        left: 100,
         fontSize: 24,
     },
     image: {
@@ -53,9 +62,15 @@ const styles = StyleSheet.create({
     action: {
         backgroundColor: 'black',
         color: 'white',
+        fontSize: 18,
+        height: 40,
+        paddingLeft: 10,
+        paddingTop: 5,
     },
     icon: {
         position: 'absolute',
+        color: 'white',
+        backgroundColor: 'rgba(255,255,255,0)',
     },
 });
 

@@ -62,17 +62,17 @@ class PeopleDetail extends Component {
             />
             <Text>{this.props.person.notes}</Text>
           </View>
-            <View>
-              <TouchableOpacity onPress={()=> this.startEditting()}>
-                <MaterialIcon name={'autorenew'} />
-                <Text>EDIT</Text>
+            <View style={styles.actionArea}>
+              <TouchableOpacity onPress={()=> this.startEditting()} style={styles.crudActions}>
+                <MaterialIcon name={'autorenew'} style={styles.crud} />
+                <Text style={styles.crud2}>EDIT</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.props.deleteContact(this.props.person._id)}>
-                <MaterialIcon name={'delete-forever'} />
-                <Text>DELETE</Text>
+              <TouchableOpacity onPress={() => this.props.deleteContact(this.props.person._id)} style={styles.crudActions}>
+                <MaterialIcon name={'delete-forever'} style={styles.crud} />
+                <Text style={styles.crud2}>DELETE</Text>
               </TouchableOpacity>
             </View>
-          <View>
+          <View style={styles.actionArea}>
               <TouchableOpacity onPress={()=>{}} >
               <Image
                 source={require("../images/call@2x.png.png")}
@@ -91,11 +91,11 @@ class PeopleDetail extends Component {
                 style={styles.actionImage}
               />
             </TouchableOpacity>
+            </View>
             <View style={styles.actionArea}>
               <Text>Call</Text>
               <Text>Email</Text>
               <Text>SMS</Text>
-            </View>
           </View>
         </ScrollView>
       </View>
@@ -104,41 +104,42 @@ class PeopleDetail extends Component {
 }
 
 const styles = StyleSheet.create({
+  container:{ 
+    margin: 5,
+  },
   card: {
     marginTop: 10,
     paddingBottom: 20,
     marginBottom: 20,
     borderColor: "lightgrey",
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
   },
   title1: {
-    top: 10,
-    left: 80,
+    position: "absolute",
+    top: 25,
+    left: 90,
     fontSize: 24,
   },
   title2: {
-    top: 35,
-    left: 82,
+    position: "absolute",
+    top: 55,
+    left: 90,
     fontSize: 18,
   },
   image: {
-    flex: 1,
     height: 100,
-    width: 333,
-    // backgroundColor: "transparent",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '100%',
   },
   closeIcon: {
     position: "absolute",
     top: 5,
-    left: 295,
+    right: 5,
     color: "rgba(233,166,154,0.8)",
     backgroundColor: "rgba(255,255,255,0)",
   },
   icon: {
     position: "absolute",
-    top: 15,
+    // top: 15,
     left: 0,
     color: "white",
     backgroundColor: "rgba(255,255,255,0)",
@@ -153,7 +154,7 @@ const styles = StyleSheet.create({
     color: "#26a69a",
   },
   actionArea: {
-    paddingTop: 10,
+    marginVertical: 20,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
@@ -162,6 +163,17 @@ const styles = StyleSheet.create({
     //   backgroundColor: 'gray',
       height: 100,
       width: 100
+  },
+  crudActions: {
+    flexDirection: 'row',
+  },
+  crud: {
+    color: '#3496e2',
+    fontSize: 32
+  },
+  crud2: {
+    color: '#3496e2',
+    fontSize: 22,
   }
 });
 const mapStateToProps = (state) => {
